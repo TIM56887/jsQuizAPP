@@ -10,7 +10,12 @@ export default defineConfig({
         target: 'http://127.0.0.1:5000', // 目标服务器
         changeOrigin: true, // 允许改变源
         secure: false, // 如果是https接口，需要配置这个参数
-      }
+      },
+      '/fivequiz': {
+        target: 'http://127.0.0.1:5000', // 目标服务器
+        changeOrigin: true, // 允许改变源
+        secure: false, // 如果是https接口，需要配置这个参数
+      },
     }
   }
 })

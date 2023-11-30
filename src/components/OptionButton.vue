@@ -1,31 +1,42 @@
 <template>
     <button 
-    :class="{shake:shaking}"
-    class="h-12 mt-4 flex items-center border rounded-md border-black hover:bg-slate-200"
-    @click="checkAnswer" 
+        :class="wrongAnswer"
+        class="h-12 mt-4 flex items-center border-2 border-stone-300 rounded-md hover:bg-slate-200"
+        @click="checkAnswer" 
     >
                 <div class="index w-9 text-base">{{ index +1 }} </div>
-                <div class="option text-xl">{{ option }}</div>
+                <div class="option text-xl">{{ option.substring(3) }}</div>
     </button>
 </template>
 
 <script setup>
 
-import { ref, defineProps} from "vue" 
+import { ref, defineProps, reactive} from "vue" 
+
+let wrongAnswer = reactive({
+    shake:false,
+    'border-red-600':false
+
+})
 const props= defineProps({
     index:Number,
     option:String,
-    answer:Number
+    answers:Number
 })
-
 const emit = defineEmits(['answerChecked'])
-let shaking = ref(false)
+
 function checkAnswer () {
-    if (props.index !== props.answer) {
-        shaking.value = true
-        setTimeout(()=> shaking.value = false,500);
+    if (props.index !== props.answers) {
+        wrongAnswer.shake = true
+        wrongAnswer['border-red-600'] = true
+        setTimeout(()=> {
+            wrongAnswer.shake = false;
+            wrongAnswer['border-red-600'] =false;
+        },500);
     }else {
-        emit('answerChecked',props.index)
+        emit('answerChecked',props.index);
+        
+
     }
 
     

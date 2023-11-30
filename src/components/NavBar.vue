@@ -4,11 +4,13 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  <header class="none:container mx-auto text-gray-50 ">
-    <a href="/">    
-      <span class="bg-zinc-400 m-3 p-1 text-lg">#Timmy</span>
-      <h1 class="text-center m-3 p-1 text-5xl">JavaScript Quiz</h1>
-    </a>
+  <header class="p-4 border-b">
+    <div class="text-gray-50 flex">
+      <div class="ps-10 text-2xl w-5/12"><h1>JavaScript Quiz</h1></div>
+      <div class="w-1/2 text-right text-1xl">
+        <h2><a href="/">#Timmy</a> | Web Development Resources</h2>
+      </div>
+    </div>
   </header>
 </template>
 
