@@ -6,7 +6,7 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  
 
   background-color: #242424;
 
@@ -16,9 +16,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 body {
-  /* display: grid;
-  place-items: center;
-  min-height: 100vh; */
+
   margin: 0; 
 }
 

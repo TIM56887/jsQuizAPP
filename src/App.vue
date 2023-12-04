@@ -1,24 +1,22 @@
 <script setup>
 import NavBar from './components/NavBar.vue';
-import MainContent from './components/MainContent.vue'
 </script>
 
 <template>
   <NavBar />
-  <MainContent />
+  <transition name="fade">
+    <router-view></router-view>
+  </transition>
+  
+  
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+
+.fade-enter, .fade-leave-active {
+  opacity: 0.1;
 }
 </style>
