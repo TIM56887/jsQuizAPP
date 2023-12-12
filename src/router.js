@@ -1,16 +1,17 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import JsQuiz from './pages/JsQuiz.vue'
-import Home from './pages/Home.vue'
+import HomePage from './pages/HomePage.vue'
+import Question from './pages/Question.vue'
+import QuestionList from './pages/QuestionList.vue'
 
-// const Home = { template: NavBar }
-// const About = { template: '<div>About</div>' }
 const routes = [
-  { path: '/jsquiz', component: JsQuiz },
-  { path: '/', component: Home },
+  { path: '/', component: HomePage },
+  { path: '/question', component: Question },
+  { path: '/questionlist', component:QuestionList}
+  
 ]
 
 export default createRouter({
-    history: createWebHistory(),
+    history: createWebHistory('/jsquiz/'),
     routes, // short for `routes: routes`
   })
 

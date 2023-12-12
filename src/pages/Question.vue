@@ -1,15 +1,17 @@
 <template>
     <section>
+
+
         <div 
             v-if="questions.length > 0"  
             class="md:container mx-auto mt-12 p-8 bg-white  lg:max-w-[768px] min-h-[700px] overflow-y-auto rounded-lg "
         >
-            <div class="grid grid-cols-10">
-                <button v-if="index!=0" @click="index--" class="text-xl w-10 justify-self-end col-start-8"><i class="hover:bg-slate-200 bi bi-arrow-left-square"></i></button>
+            <div class="grid grid-cols-10 h-[30px]">
+                <button v-if="index!=0" @click="index--" class="text-xl w-10 justify-self-end col-start-8 hover:text-2xl"><i class="bi bi-arrow-left-square"></i></button>
                 <span class="text-center col-start-9">
                     {{ index +1 }} / {{ questions.length }}
                 </span>
-                <button v-if="questions.length > index+1" @click="index++" class=" text-xl w-10"><i class="hover:bg-slate-200 bi bi-arrow-right-square"></i></button>
+                <button v-if="questions.length > index+1" @click="index++" class=" text-xl hover:text-2xl w-10"><i class="bi bi-arrow-right-square"></i></button>
             </div>
             <div class="text-2xl mb-2 font-bold" >
                 {{questions[index].question}}
@@ -93,7 +95,7 @@ onMounted(()=>{
         xhr.abort()
     }
     isSending = true;
-    xhr.open("GET", "/quiz", true);
+    xhr.open("GET", "/quiz?amount=5&listed=false", true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             isSending = false;

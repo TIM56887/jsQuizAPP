@@ -4,10 +4,18 @@
             <div class="text-5xl text-center font-semibold p-1  ">
                 <h1>Learn JavaScript Fast by Question</h1>
             </div>
-            <router-link to="/jsquiz">
+            <router-link to="/question">
                 <div class="flex items-center font-semibold text-3xl hover:border p-4 shadow-lg shadow-gray-900 mt-20 rounded hover:text-4xl transition-all duration-100 box hover:mt-10">
                     <div class="test">
-                        Start 5 questions
+                        5 random questions
+                    </div>
+                    <i class="bi bi-play text-5xl ms-4"></i>
+                </div>   
+            </router-link>
+            <router-link to="/questionlist">
+                <div class="flex items-center font-semibold text-3xl hover:border p-4 shadow-lg shadow-gray-900 mt-20 rounded hover:text-4xl transition-all duration-100 box hover:mt-10">
+                    <div class="test">
+                        Questions List
                     </div>
                     <i class="bi bi-play text-5xl ms-4"></i>
                 </div>   
@@ -41,9 +49,10 @@
     background-position: center center;
     background-repeat: no-repeat;
     animation: bg-spin 3s linear infinite;
-    &:hover {
+}
+.box:hover {
         animation-play-state: paused;
-    }
+        
 }
 @keyframes bg-spin {
     to {

@@ -4,19 +4,22 @@ import NavBar from './components/NavBar.vue';
 
 <template>
   <NavBar />
-  <transition name="fade">
-    <router-view></router-view>
-  </transition>
+
+  <router-view v-slot="{ Component }">
+    <transition name="fade">
+      <component :is="Component"></component>
+    </transition>
+  </router-view>
   
   
 </template>
 
 <style scoped>
-.fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+.fade-enter-active {
+  transition: opacity 0.3s;
 }
 
-.fade-enter, .fade-leave-active {
-  opacity: 0.1;
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>
