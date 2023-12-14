@@ -1,7 +1,7 @@
 <template>
     <button 
         :class="wrongAnswer"
-        class="h-12 mt-4 flex items-center border-2 border-stone-300 rounded-md hover:bg-slate-200"
+        class="min-h-[48px] mt-4 flex items-center border-2 border-stone-300 rounded-md hover:bg-slate-200 overflow-auto"
         @click="checkAnswer" 
     >
                 <div class="index w-9 text-base">{{ index +1 }} </div>

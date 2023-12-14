@@ -1,22 +1,24 @@
 <template>
     <section>
+
+
         <div 
             v-if="questions.length > 0"  
-            class="md:container mx-auto mt-10 p-8 bg-white  lg:max-w-[768px] min-h-[700px] overflow-y-auto rounded-lg "
+            class="md:container mx-auto mt-12 p-8 bg-white  lg:max-w-[768px] min-h-[700px] overflow-y-auto rounded-lg "
         >
-            <div class="grid grid-cols-10">
-                <button v-if="index!=0" @click="index--" class="text-xl w-10 justify-self-end col-start-8"><i class="hover:bg-slate-200 bi bi-arrow-left-square"></i></button>
+            <div class="grid grid-cols-10 h-[30px]">
+                <button v-if="index!=0" @click="index--" class="text-xl w-10 justify-self-end col-start-8 hover:text-2xl"><i class="bi bi-arrow-left-square"></i></button>
                 <span class="text-center col-start-9">
                     {{ index +1 }} / {{ questions.length }}
                 </span>
-                <button v-if="questions.length > index+1" @click="index++" class=" text-xl w-10"><i class="hover:bg-slate-200 bi bi-arrow-right-square"></i></button>
+                <button v-if="questions.length > index+1" @click="index++" class=" text-xl hover:text-2xl w-10"><i class="bi bi-arrow-right-square"></i></button>
             </div>
             <div class="text-2xl mb-2 font-bold" >
                 {{questions[index].question}}
             </div>
             <div class="min-h-1/5 text-gray-50">
                 <div class="bg-gray-600 text-xs rounded-t-md ps-3 py-1">javascript</div>
-                <pre class="bg-slate-950 rounded-b-md px-10 py-3"><code>{{ questions[index].question_code }}</code></pre>
+                <pre class="bg-slate-950 rounded-b-md px-10 py-3 overflow-x-auto"><code>{{ questions[index].question_code }}</code></pre>
             </div>
             <div class="h-2/5 flex flex-col">
                 <OptionButton 
@@ -30,10 +32,10 @@
             <div class="flex justify-center">
                 <button
                     v-if="finsihed" 
-                    class="border rounded-md bg-emerald-500 text-gray-50 hover:bg-slate-400 text-xl p-2 mt-10" 
+                    class="border rounded-md bg-emerald-600 text-gray-50 hover:bg-emerald-900 text-3xl p-3 mt-10" 
                     @click="getfiveQuestion"
                 > 
-                        5 more question
+                        5 more questions <i class="ms-2 text-3xl bi bi-cloud-download"></i>
                 </button>
             </div>
         </div>
@@ -62,17 +64,17 @@
 </template>
 
 <script setup>
-import OptionButton from './OptionButton.vue'
-import { ref, toRefs, onMounted, computed,reactive} from "vue"
+import OptionButton from '../components/OptionButton.vue'
+import { ref, toRefs, onMounted, computed,reactive, toRef} from "vue"
 
-let xhr = new XMLHttpRequest();
 let data = reactive({
     questions:[],
     index:0,
     showExplanation:false,
-    finsihed:false
+    finsihed:false,
+    test:'123'
 })
-let {questions, index, showExplanation,finsihed, goLeft} = toRefs(data)
+let {questions, index, showExplanation,finsihed} = toRefs(data)
 
 let answer = computed(()=> questions.value[index.value].answer)
 let currentOption = computed(() => {
@@ -84,10 +86,19 @@ let currentOption = computed(() => {
   }
   return []; 
 });
+const xhr = new XMLHttpRequest();
+
+let isSending = false;
 onMounted(()=>{
-    xhr.open("GET", "/quiz", true);
+
+    if (isSending) {
+        xhr.abort()
+    }
+    isSending = true;
+    xhr.open("GET", "/quiz?amount=5&listed=false", true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
+            isSending = false;
             if (xhr.status === 200) {
                 questions.value = JSON.parse(xhr.responseText);
         } else {
@@ -95,10 +106,11 @@ onMounted(()=>{
          }
         }
     };
-    xhr.onerror = function (e) {
+    xhr.onerror = function () {
         console.error(xhr.statusText);
     };
-    xhr.send(null);}
+    
+    xhr.send();}
     )
 const getfiveQuestion = () => {
     const currentQuestionIds = questions.value.map(q => q.question_id);
@@ -131,9 +143,7 @@ const showExplanationPage = () => {
 }
 const nextQuestion = () => {
     showExplanation.value = false
-    
     index.value++
-    
 }
 const closeExpanation = () => showExplanation.value = false
 
