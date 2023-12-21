@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHashHistory  } from 'vue-router';
 import HomePage from './pages/HomePage.vue'
 import Question from './pages/Question.vue'
 import QuestionList from './pages/QuestionList.vue'
@@ -11,7 +11,7 @@ const routes = [
 ]
 
 export default createRouter({
-    history: createWebHistory('/jsquiz/'),
+    history: createWebHashHistory(),
     routes, // short for `routes: routes`
   })
 

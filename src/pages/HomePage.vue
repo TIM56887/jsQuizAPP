@@ -12,14 +12,14 @@
                     <i class="bi bi-play text-5xl ms-4"></i>
                 </div>   
             </router-link>
-            <router-link to="/questionlist">
+            <!-- <router-link to="/questionlist">
                 <div class="flex items-center font-semibold text-3xl hover:border p-4 shadow-lg shadow-gray-900 mt-20 rounded hover:text-4xl transition-all duration-100 box hover:mt-10">
                     <div class="test">
                         Questions List
                     </div>
                     <i class="bi bi-play text-5xl ms-4"></i>
                 </div>   
-            </router-link>
+            </router-link> -->
         </div>
           
     </section>

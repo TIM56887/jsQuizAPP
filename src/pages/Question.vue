@@ -1,7 +1,5 @@
 <template>
     <section>
-
-
         <div 
             v-if="questions.length > 0"  
             class="md:container mx-auto mt-12 p-8 bg-white  lg:max-w-[768px] min-h-[700px] overflow-y-auto rounded-lg "
@@ -72,7 +70,6 @@ let data = reactive({
     index:0,
     showExplanation:false,
     finsihed:false,
-    test:'123'
 })
 let {questions, index, showExplanation,finsihed} = toRefs(data)
 
@@ -90,7 +87,6 @@ const xhr = new XMLHttpRequest();
 
 let isSending = false;
 onMounted(()=>{
-
     if (isSending) {
         xhr.abort()
     }
@@ -110,8 +106,9 @@ onMounted(()=>{
         console.error(xhr.statusText);
     };
     
-    xhr.send();}
-    )
+    xhr.send();
+}
+)
 const getfiveQuestion = () => {
     const currentQuestionIds = questions.value.map(q => q.question_id);
 
