@@ -5,7 +5,7 @@
         @click="checkAnswer" 
     >
                 <div class="index w-9 text-base">{{ index +1 }} </div>
-                <div class="option text-xl">{{ option.substring(3) }}</div>
+                <div class="option text-xl">{{ option }}</div>
     </button>
 </template>
 
